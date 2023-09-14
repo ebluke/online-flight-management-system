@@ -1,13 +1,25 @@
-const handleClick = () => {
-  console.log("Button work");
-};
+import * as React from "react";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
   return (
-    <div>
-      <button onClick={() => handleClick()}>Testing text</button>
-      <text></text>
-    </div>
+    <ChakraProvider>
+      <text> Testing chackra integration</text>
+      {/* <Router>
+        <AppWrapper>
+          <Switch>
+            <Route exact path="/login" component={} />
+            <Route exact path="/signup" component={} />
+            {isLoggedIn && <AppRouting />}
+
+            <Route>
+              <Redirect to={lastLogin} />
+            </Route>
+          </Switch>
+        </AppWrapper>
+      </Router> 
+    */}
+    </ChakraProvider>
   );
 }
 
