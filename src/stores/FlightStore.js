@@ -1,11 +1,8 @@
 import { makeObservable, observable, action, runInAction } from "mobx";
 
-// Contains State for single user (scrapping functional backened, beyond scope)
-export class UserDataStore {
-  isLoggedIn = false;
-  email = "";
-  fullName = "";
-  password = "";
+export class FlightDataStore {
+  // Going to hardcode this likelky
+  flightNumber = "";
 
   set = (key, value) => {
     runInAction(() => {
@@ -23,4 +20,4 @@ export class UserDataStore {
     });
   }
 }
-export const UserStore = new UserDataStore();
+export const FlightStore = new FlightDataStore();
