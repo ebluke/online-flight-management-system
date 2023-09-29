@@ -8,13 +8,17 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import Dashboard from "./pages/app/dashboard/Dashboard";
 import MyFlights from "./pages/app/dashboard/flights/MyFlights";
+import Flight from "./pages/app/dashboard/flights/Flight";
 import FutureFlights from "./pages/app/dashboard/flights/FutureFlights";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { FlightStore } from "./stores/FlightStore";
 
 function App() {
+  const flightStore = FlightStore;
   const userStore = UserStore;
   window.onload = function () {
     userStore.usersPrefill();
+    flightStore.fillFlights();
   };
 
   const router = createBrowserRouter([
@@ -42,14 +46,18 @@ function App() {
       path: "future-flights",
       element: <FutureFlights />,
     },
+    {
+      path: "flight-information",
+      element: <Flight />,
+    },
   ]);
 
   return (
-      <AppWrapper>
-        <Center w="100%" minH="100vh">
-          <RouterProvider router={router} />
-        </Center>
-      </AppWrapper>
+    <AppWrapper>
+      <Center w="100%" minH="100vh">
+        <RouterProvider router={router} />
+      </Center>
+    </AppWrapper>
   );
 }
 

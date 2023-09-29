@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import { FlightStore } from "../../stores/FlightStore";
+import { getDate } from "../../functions/getDate";
 
 export default function UserMenu() {
+  const flightStore = FlightStore;
   return (
-    <div>UserMenu</div>
-  )
+    <button onClick={() => flightStore.generateFlightNumber()}>UserMenu</button>
+  );
 }
