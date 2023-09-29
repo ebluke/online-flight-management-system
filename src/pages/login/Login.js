@@ -35,7 +35,7 @@ function Login() {
       <ScaleFade in={true}>
         <form>
           <Stack spacing="6" pb="5rem">
-            <Text as="b" fontSize="4xl" textAlign="center">
+            <Text color="brand.text" as="b" fontSize="4xl" textAlign="center">
               JEAANS
             </Text>
 
@@ -55,15 +55,20 @@ function Login() {
               value={pword}
               onChange={(e) => setPword(e.target.value)}
             />
-            <Text>{userStore.errMsg}</Text>
+            <Text color="brand.red">{userStore.errMsg}</Text>
 
-            <Button variant="outline" onClick={() => handleLogin()}>
+            <Button
+              color="brand.text"
+              variant="outline"
+              onClick={() => handleLogin()}
+            >
               Login
             </Button>
 
             <Flex gap="0.5rem" justifyContent="center">
-              <Text>Need an account?</Text>
+              <Text color="brand.text">Need an account?</Text>
               <Button
+                color="brand.text"
                 size="xs"
                 variant="link"
                 onClick={() => navigate("/signup")}
