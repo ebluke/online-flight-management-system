@@ -1,11 +1,11 @@
 import { makeObservable, observable, action, runInAction } from "mobx";
 
 // Contains State for single user (scrapping functional backened, beyond scope)
-export class UserDataStore {
-  isLoggedIn = false;
-  email = "";
-  fullName = "";
-  password = "";
+export class MetaDataStore {
+  // access user and corresponding password via single index.
+  // passwords stored in plain text, out of scope otherwise.
+  users = [];
+  passwords = [];
 
   set = (key, value) => {
     runInAction(() => {
@@ -23,4 +23,4 @@ export class UserDataStore {
     });
   }
 }
-export const UserStore = new UserDataStore();
+export const MetaStore = new MetaDataStore();
