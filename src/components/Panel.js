@@ -8,7 +8,7 @@ export default function Panel({ children, onClick, ...props }) {
       boxSize="sm"
       onClick={onClick}
       minW="sm"
-      bgColor="#11111b"
+      bgColor="brand.crust"
     >
       <Center>{children}</Center>
     </Box>
