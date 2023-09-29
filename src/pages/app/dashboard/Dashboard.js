@@ -14,7 +14,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   return (
-    <Stack bgColor="#181825">
+    <Stack bgColor="brand.mantle">
       <NavBar />
       <AppLayout>
         <Flex justifyContent="space-evenly">
