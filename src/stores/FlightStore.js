@@ -3,6 +3,9 @@ import { makeObservable, observable, action, runInAction } from "mobx";
 export class FlightDataStore {
   // Going to hardcode this likelky
   flightNumber = "";
+  depTime = "";
+  arrTime = "";
+  
 
   set = (key, value) => {
     runInAction(() => {

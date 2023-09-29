@@ -1,10 +1,10 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 
 export default function AppWrapper({ children }) {
   return (
-    <Box minH="100vh" w="100vw" bg="brand.bgBase">
+    <Center minH="100vh" w="100vw" bg="#1e1e2e">
       {children}
-    </Box>
+    </Center>
   );
 }
