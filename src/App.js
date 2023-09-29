@@ -45,15 +45,11 @@ function App() {
   ]);
 
   return (
-    <ChakraProvider>
-      <Stack>
-        <AppWrapper>
-          <Center w="100%" minH="100vh">
-            <RouterProvider router={router} />
-          </Center>
-        </AppWrapper>
-      </Stack>
-    </ChakraProvider>
+      <AppWrapper>
+        <Center w="100%" minH="100vh">
+          <RouterProvider router={router} />
+        </Center>
+      </AppWrapper>
   );
 }
 

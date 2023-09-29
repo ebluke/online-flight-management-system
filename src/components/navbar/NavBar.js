@@ -5,7 +5,7 @@ import { getDate } from "../../functions/getDate";
 
 export default function NavBar() {
   return (
-    <Center bgColor="#181825">
+    <Center bgColor="mantle">
       <Center minW="100%" p="2rem">
         <Flex direction="column" flexGrow="1">
           <Text> {getDate()}</Text>
