@@ -2,8 +2,9 @@ import React from "react";
 import { Text, Box, Flex, Spacer, Center } from "@chakra-ui/react";
 import UserMenu from "./UserMenu";
 import { getDate } from "../../functions/getDate";
+import { observer } from "mobx-react";
 
-export default function NavBar({ pageName }) {
+function NavBar({ pageName }) {
   return (
     <Center bgColor="brand.mantle">
       <Center minW="100%" p="2rem">
@@ -19,3 +20,4 @@ export default function NavBar({ pageName }) {
     </Center>
   );
 }
+export default observer(NavBar);

@@ -4,6 +4,7 @@ import { makeObservable, observable, action, runInAction } from "mobx";
 export class UserDataStore {
   // User Data (stored in backend)
   users = [];
+  loadCounter = 0;
 
   // Session Data
   email = "";

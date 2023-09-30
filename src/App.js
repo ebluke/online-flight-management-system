@@ -1,25 +1,30 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Stack, Center } from "@chakra-ui/react";
 import AppWrapper from "./components/layout/AppWrapper";
-
+import { observer } from "mobx-react";
 import { UserStore } from "./stores/UserStore";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import Dashboard from "./pages/app/dashboard/Dashboard";
-import MyFlights from "./pages/app/dashboard/flights/MyFlights";
-import Flight from "./pages/app/dashboard/flights/Flight";
-import FutureFlights from "./pages/app/dashboard/flights/FutureFlights";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Flights from "./pages/app/dashboard/flights/Flights";
+import FlightInfo from "./pages/app/dashboard/flights/FlightInfo";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Route,
+  useParams,
+} from "react-router-dom";
 import { FlightStore } from "./stores/FlightStore";
 
 function App() {
   const flightStore = FlightStore;
   const userStore = UserStore;
-  window.onload = function () {
-    userStore.usersPrefill();
+
+  useEffect(() => {
     flightStore.fillFlights();
-  };
+  }, []);
 
   const router = createBrowserRouter([
     {
@@ -39,16 +44,12 @@ function App() {
       element: <Dashboard />,
     },
     {
-      path: "my-flights",
-      element: <MyFlights />,
+      path: "flights",
+      element: <Flights />,
     },
     {
-      path: "future-flights",
-      element: <FutureFlights />,
-    },
-    {
-      path: "flight-information",
-      element: <Flight />,
+      path: "flights/:flightNumber",
+      element: <FlightInfo flightNumber={flightStore.selectedFlight} />,
     },
   ]);
 
@@ -61,4 +62,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);

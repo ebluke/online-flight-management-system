@@ -1,6 +1,0 @@
-import React from "react";
-import { Flex } from "@chakra-ui/react";
-
-export default function MyFlights() {
-  return <Flex>MyFlights</Flex>;
-}
