@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Flex,
   Text,
@@ -16,16 +16,18 @@ import {
 import { useNavigate } from "react-router-dom";
 import AppLayout from "../../../../components/layout/AppLayout";
 import { FlightStore } from "../../../../stores/FlightStore";
+import flightData from "../../../../database/flightData";
+import { observer } from "mobx-react";
 
-export default function FutureFlights() {
-  //const flightUrl = "/fligh-information/";
-  // `${flightUrl}+${obj.flightNum}`
+function FutureFlights() {
   const flightStore = FlightStore;
-  // window.onload = function () {
-  //   flightStore.fillFlights();
-  // };
-
+  const flightUrl = "/flights/";
   const navigate = useNavigate();
+
+  const handleClick = (flightnum) => {
+    flightStore.set("selectedFlight", flightnum);
+    navigate(`${flightUrl}${flightnum}`);
+  };
 
   return (
     <AppLayout pageName="Future Flights">
@@ -39,12 +41,11 @@ export default function FutureFlights() {
             </Tr>
           </Thead>
           <Tbody>
-            {/* generate Flights to fill data */}
-            {flightStore.flights.map((obj) => (
-              <Tr onClick={() => navigate("/flight-information")}>
+            {flightData.map((obj, key) => (
+              <Tr onClick={() => handleClick(obj.flightNumber)} key={key}>
                 <Td>{obj.flightNumber}</Td>
-                <Td> {obj.origin}</Td>
-                <Td> {obj.destination}</Td>
+                <Td>{obj.origin}</Td>
+                <Td>{obj.destination}</Td>
               </Tr>
             ))}
           </Tbody>
@@ -53,3 +54,4 @@ export default function FutureFlights() {
     </AppLayout>
   );
 }
+export default FutureFlights;

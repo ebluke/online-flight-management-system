@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
+import { observer } from "mobx-react";
 
-export default function UserMenu() {
-  return (
-    <div>UserMenu</div>
-  )
+function UserMenu() {
+  return <div>UserMenu</div>;
 }
+export default observer(UserMenu);

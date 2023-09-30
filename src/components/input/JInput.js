@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from "mobx-react";
 import {
   FormControl,
   FormLabel,
@@ -9,15 +10,7 @@ import {
   InputGroup,
 } from "@chakra-ui/react";
 
-export default function JInput({
-  name,
-  type,
-  placeholder,
-  onChange,
-  value,
-  id,
-  ...props
-}) {
+function JInput({ name, type, placeholder, onChange, value, id, ...props }) {
   const isError = value === "";
   return (
     <FormControl>
@@ -41,3 +34,4 @@ export default function JInput({
     </FormControl>
   );
 }
+export default observer(JInput);

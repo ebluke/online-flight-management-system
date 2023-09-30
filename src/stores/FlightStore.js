@@ -1,15 +1,8 @@
 import { makeObservable, observable, action, runInAction } from "mobx";
+import flightData from "../database/flightData";
 
 export class FlightDataStore {
-  // Flight Data
-  flights = [];
-
-  // Not sure
-  flightNumber = "";
-  origin = "";
-  destination = "";
-  depTime = "";
-  arrTime = "";
+  selectedFlight = "";
 
   set = (key, value) => {
     runInAction(() => {
@@ -19,13 +12,13 @@ export class FlightDataStore {
 
   // Generation
   generateFlightNumber = () => {
-    let flightNum = "";
+    let flightNumber = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
     for (let i = 1; i <= 6; i++) {
       let char = Math.floor(Math.random() * str.length + 1);
-      flightNum += str.charAt(char);
+      flightNumber += str.charAt(char);
     }
-    return flightNum;
+    return flightNumber;
   };
 
   generateLocations = () => {
@@ -244,29 +237,41 @@ export class FlightDataStore {
   generateTimes = () => {};
 
   fillFlights = () => {
-    // const flight = {
-    //   flightNumber: "",
-    //   origin: "",
-    //   destination: "",
-    //   depTime: "",
-    //   arrTime: "",
-    // };
-    for (let i = 0; i < 100; i++) {
-      let fn = this.generateFlightNumber();
-      let loc = this.generateLocations();
-      let or = loc.origin;
-      let des = loc.destination;
-      let flight = {
-        flightNumber: fn,
-        origin: or,
-        destination: des,
-      };
-      this.flights[i] = flight;
+    while (flightData.length < 100) {
+      for (let i = 0; i < 100; i++) {
+        let fn = this.generateFlightNumber();
+        let loc = this.generateLocations();
+        let or = loc.origin;
+        let des = loc.destination;
+        let flight = {
+          flightNumber: fn,
+          origin: or,
+          destination: des,
+        };
+        flightData.push(flight);
+      }
+      console.log(flightData);
+    }
+  };
+
+  // Getters
+  getFlight = (id) => {
+    for (let i = 0; i < flightData.length; i++) {
+      if (id == flightData[i].flightNumber) {
+        //flight found
+        const flight = {
+          flightNumber: flightData[i].flightNumber,
+          origin: flightData[i].origin,
+          destination: flightData[i].destination,
+        };
+        return flight;
+      }
     }
   };
 
   constructor() {
     makeObservable(this, {
+      selectedFlight: observable,
       set: action,
     });
   }

@@ -1,10 +1,12 @@
 import React from "react";
 import { FlightStore } from "../../stores/FlightStore";
 import { getDate } from "../../functions/getDate";
+import { useNavigate } from "react-router";
+import { observer } from "mobx-react";
 
-export default function UserMenu() {
+function UserMenu() {
+  const navigate = useNavigate();
   const flightStore = FlightStore;
-  return (
-    <button onClick={() => flightStore.generateFlightNumber()}>UserMenu</button>
-  );
+  return <button onClick={() => navigate("/dashboard")}>UserMenu</button>;
 }
+export default observer(UserMenu);
